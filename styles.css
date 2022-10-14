@@ -1,0 +1,120 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: lightyellow;
+  color: #333;
+}
+
+.game {
+  margin: 7%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#game-dashboard {
+  width: 600px;
+
+  display: flex;
+  justify-content: space-between;
+}
+
+#render-game-btn {
+  width: 150px;
+  height: 33px;
+  margin: 5rem;
+
+  border-radius: 10px;
+  background-color: lightgreen;
+  font-size: 1.5rem;
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+#game-grid {
+  width: 600px;
+
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.hole {
+  position: relative;
+  width: 200px;
+  height: 200px;
+
+  overflow: hidden;
+}
+
+.mound {
+  position: absolute;
+  bottom: -30px;
+  z-index: 5;
+  width: 100%;
+  height: 70px;
+
+  background: url(../assets/dirt.svg) bottom no-repeat;
+  background-size: contain;
+}
+
+.mole {
+  position: absolute;
+  top: 100%;
+  width: 100%;
+  height: 100%;
+
+  background: url(../assets/mole.svg) bottom no-repeat;
+  background-size: 55%;
+
+  transition: all 0.25s;
+}
+
+.hole.popup .mole {
+  top: 0;
+}
+
+.mole.shake {
+  animation: shake 0.25s;
+}
+
+@keyframes shake {
+  0% {
+    transform: translate(1px, 1px) rotate(0deg);
+  }
+  10% {
+    transform: translate(-3px, -6px) rotate(-3deg);
+  }
+  20% {
+    transform: translate(-9px, 0px) rotate(3deg);
+  }
+  30% {
+    transform: translate(9px, 6px) rotate(0deg);
+  }
+  40% {
+    transform: translate(3px, -3px) rotate(3deg);
+  }
+  50% {
+    transform: translate(-3px, 6px) rotate(-3deg);
+  }
+  60% {
+    transform: translate(-9px, 3px) rotate(0deg);
+  }
+  70% {
+    transform: translate(9px, 3px) rotate(-3deg);
+  }
+  80% {
+    transform: translate(-3px, -3px) rotate(3deg);
+  }
+  90% {
+    transform: translate(3px, 6px) rotate(0deg);
+  }
+  100% {
+    transform: translate(3px, -6px) rotate(-3deg);
+  }
+}
