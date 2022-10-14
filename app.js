@@ -1,41 +1,41 @@
-const timerCounter = document.getElementById('timer-counter');
-const scoreCounter = document.getElementById('score-counter');
-const renderGameBtn = document.getElementById('render-game-btn');
-
 const numberOfHoles = 6;
-const gameGrid = document.querySelector('#game-grid');
-function createGameGrid() {
-  for (let i = 0; i < numberOfHoles; i++) {
-    gameGrid.innerHTML += `<div class="hole">
-				<div class="mound"></div>
-				<div class="mole"></div>
-			</div>`;
-  }
-}
-createGameGrid();
-
-const holes = document.querySelectorAll('.hole');
-const moles = document.querySelectorAll('.mole');
-
 const gameDuration = 30000;
 const popupMinDuration = 450;
 const popupMaxDuration = 750;
 
-let gameOver = true;
-let gameInitiated = false;
+const gameGrid = document.querySelector('#game-grid');
+function createGameGrid() {
+  for (let i = 0; i < numberOfHoles; i++) {
+    gameGrid.innerHTML += `
+    <div class="hole">
+			<div class="mound"></div>
+			<div class="mole"></div>
+		</div>`;
+  }
+}
+createGameGrid();
+
+const timerCounter = document.getElementById('timer-counter');
+const scoreCounter = document.getElementById('score-counter');
+const holes = document.querySelectorAll('.hole');
+const moles = document.querySelectorAll('.mole');
+const renderGameBtn = document.getElementById('render-game-btn');
+
+renderGameBtn.addEventListener('click', renderGame);
+moles.forEach((mole) => mole.addEventListener('click', whackAMole));
+
+let gameOver;
+let gameInitiated;
+
+let timeLeft;
+let score;
+let lastHoleIdx;
 
 let gameDurationId;
 let popUpDurationId;
 let popUpAgainId;
 let whackAMoleId;
 let timeLeftId;
-
-let timeLeft;
-let score;
-let lastHoleIdx;
-
-renderGameBtn.addEventListener('click', renderGame);
-moles.forEach((mole) => mole.addEventListener('click', whackAMole));
 
 function renderGame() {
   if (!gameInitiated) {
@@ -123,6 +123,7 @@ function popUpAgain() {
 
 function timerCountdown() {
   timeLeft--;
+
   if (timeLeft >= 0) {
     timerCounter.textContent = `${timeLeft}s`;
   }
